@@ -1,0 +1,30 @@
+{% extends "pages/index.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center my-5">
+        <h1>JUMBLE</h1>
+    </div>
+    <div class="form-group mt-5 p-3">
+        <form action="{% url 'accounts:login' %}" method="POST">
+
+            {% csrf_token %}
+            {{ form }}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <br>
+            <input class="btn btn-dark m-4" type="submit" value="Log In">
+
+        </form>
+    </div>
+    <div class="row justify-content-center">
+        <p>Don't have an account? <a href="{% url 'accounts:signup' %}">Sign up</a></p>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <h1>Get in touch</h1>
+    </div>
+    <div class="row">
+        <p class="p-3">Thanks for taking the time out to visit the website. If you want to contact me, provide
+        feedback or ask any questions please fill in the form below and I'll get back as soon as possible.</p>
+    </div>
+    <div class="row mt-2 p-3">
+        <form action="{% url 'pages:contact' %}" class="form-group" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input class="btn btn-success m-4" type="submit" value="Submit">
+        </form>
+    </div>
+    <div class="row justify-content-center">
+        <p class="p-3"><strong>E-mail: </strong>c0desmith16@gmail.com</p>
+    </div>
+</div>
+
+{% endblock %}

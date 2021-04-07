@@ -1,0 +1,25 @@
+{% extends "pages/index.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center m-4">
+        <h4 class="display-4">{{ context }}</h4>
+    </div>
+    <div class="row my-4">
+        <h5>Game History:</h5>
+    </div>
+    <div class="row">
+        <ol>
+            {% for player in scores %}
+                <li class="h5 p-1">{{ player.name }} - {{ player.score }} - <span class="text-muted">{{ player.date }}</span></li>
+            {% endfor %}
+        </ol>
+    </div>
+</div>
+
+
+
+{% endblock %}

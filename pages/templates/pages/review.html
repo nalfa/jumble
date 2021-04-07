@@ -1,0 +1,24 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Review{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row m-5">
+        <a href="{% url 'pages:index' %}" class="col-md-4 text-center">Return Home</a>
+        <a href="{% url 'game:index' %}" class="col-md-4 text-center">Try again</a>
+        <a href="{% url 'pages:leaderboard' %}" class="col-md-4 text-center">Check Leaderboard</a>
+    </div>
+    <div class="row justify-content-center m-5">
+        <h1>Game Over</h1>
+    </div>
+    <div class="row justify-content-md-center mt-5">    
+        <h2 class="col-md-6 text-center"><a class="text-dark" href="{% url 'accounts:profile' user %}">{{ context.name }}</a></h2>
+    </div>
+    <div class="row justify-content-md-center m-4">
+        <h3 class="col-md-6 text-center">Score: {{ context.score }}</h3>
+    </div>
+</div>
+
+{% endblock %}

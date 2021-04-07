@@ -1,0 +1,28 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Rules{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row justify-content-center my-5">
+    <h1>Rules</h1>
+</div>
+<div class="h5 row p-3">
+    <p>The rules are simple:</p>
+</div>
+<div class="h5 row p-3">
+    <ul>
+        <li>Solve as many words as you can within 60 seconds</li>
+        <li>2 points are given for a correct answer</li>
+        <li>1 point is deducted if a hint is used</li>
+        <li>No points are given for an incorrect answer</li>
+    </ul>
+</div>
+<di class="h5 row p-3">
+    <p>At the end of the game check the leaderboard to see how you placed against others</p>
+</di>
+<div class="row justify-content-center my-4">
+    <a class="display-4" href="{% url 'game:index' %}">Start Game</a>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <title>{% block title %}Welcome to Jumble{% endblock %} | Jumble</title>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+      <nav class="navbar navbar-expand-md navbar-dark bg-info">
+        <a class="navbar-brand mb-0 h1" href="{% url 'pages:index' %}">Jumble</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <a class="nav-link active" href="{% url 'pages:index' %}">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{% url 'pages:rules' %}">Game</a>
+            <a class="nav-link" href="{% url 'pages:leaderboard' %}">Leaderboard</a>
+            <a class="nav-link pr-4" href="{% url 'pages:contact' %}">Contact</a>
+            <a class="nav-link active" href="{% url 'accounts:profile' user %}">{{ user }}</a>
+            <form action="{% url 'accounts:logout' %}" method="POST">
+              {% csrf_token %}
+              <input class="btn btn-light btn-sm mt-1" type="submit" value="Log Out">
+            </form>
+          </div>
+        </div>
+      </nav>
+
+
+    {% else %}
+      <nav class="navbar navbar-expand-md navbar-dark bg-info">
+        <a class="navbar-brand mb-0 h1" href="{% url 'pages:index' %}">Jumble</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <a class="nav-link active" href="{% url 'pages:index' %}">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{% url 'pages:rules' %}">Game</a>
+            <a class="nav-link" href="{% url 'pages:leaderboard' %}">Leaderboard</a>
+            <a class="nav-link pr-4" href="{% url 'pages:contact' %}">Contact</a>
+            <form class="form-inline">
+              <a class="btn btn-light" href="{% url 'accounts:signup' %}" role="button">Sign Up</a>
+              <a class="btn btn-outline-light" href="{% url 'accounts:login' %}" role="button">Sign In</a>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+    {% endif %}
+
+    <div class="content">
+      {% block content %}
+
+
+      <div class="container-fluid text-center mb-4">
+        <h1 class="display-1 pt-3">Jumble</h1>
+        <h5>The anagram game</h5>
+      </div>
+
+
+      <div class="container my-5">
+        <p>
+          Welcome to the free online anagram game. Jumble offers everyone the same chance to test their knowledge by solving a series of puzzles.
+
+          As you work your way through the puzzles by supplying the correct answers your score will increase until you reach the time limit.
+
+          Keep in mind that your intellect and knowledge are the keys to success. Think you’ve got what it takes? Then go ahead and play!
+        </p>
+      </div>
+
+      <div class="container text-center my-5">
+        <a class="h5" href="{% url 'accounts:signup' %}">Sign up here to start the game</a>
+      </div>
+
+      <div class="container my-5">
+        <div class="row">
+          <div class="col-md-8">
+            <img src="{% static '/pages/anagram.png' %}" class="img-fluid pb-4" alt="anagram">
+          </div>
+          <div class="col-md-4 p-5 rounded-lg text-center border border-dark">
+            <h3 class="p-3">Top 5 players</h3>
+            <ol>
+                {% for player in context %}
+                    <li>{{ player.name }} - {{ player.score }}</li>
+                {% endfor %}
+            </ol>
+            <a href="{% url 'pages:leaderboard' %}">View full Leaderboard</a>
+          </div>
+        </div>
+      </div>
+
+
+      {% endblock %}
+    </div>
+
+    <footer class="footer border-top mt-auto py-3">
+      <div class="container text-center">
+        <span class="text-muted">Copyright © 2021</span>
+      </div>
+    </footer>
+
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+  </body>
+</html>
