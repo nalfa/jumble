@@ -45,24 +45,21 @@ function refresh() {
     document.getElementById('hint').style.visibility = "hidden";
     document.getElementById('score').innerHTML = "Score: " + score;
     document.getElementById('btn2').disabled = "";
-    document.getElementById('outcome').style.visibility = "visible";
 }
 
 function next() {
     let a = document.getElementById('answer').value.toLowerCase();
     if (a === word) {
         score += 2;
-        document.getElementById("outcome").className = "col-md-6 text-success display-4 text-center";
-        document.getElementById('outcome').innerHTML = "Correct";
+        document.getElementById("btn1").className = "btn btn-success m-2";
         var outcome = setTimeout(() => {
-            document.getElementById('outcome').style.visibility = "hidden";
+            document.getElementById('btn1').className = "btn btn-primary m-2";
         }, 1000);
         refresh();
     } else {
-        document.getElementById("outcome").className = "col-md-6 text-danger display-4 text-center";
-        document.getElementById('outcome').innerHTML = "Wrong";
+        document.getElementById("btn1").className = "btn btn-danger m-2";
         var outcome = setTimeout(() => {
-            document.getElementById('outcome').style.visibility = "hidden";
+            document.getElementById('btn1').className = "btn btn-primary m-2";
         }, 1000);
         refresh();
     };
